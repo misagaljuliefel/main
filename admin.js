@@ -227,4 +227,3 @@ document.addEventListener('DOMContentLoaded', function () {
   loadProducts();
   renderAdminProducts();
 });
-//dto mo lagay code mo
