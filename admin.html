@@ -1,12 +1,78 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Admin Page</title>
-    <script src="storage.js"></script>
+  <meta charset="utf-8" />
+  <title>Admin Dashboard - Product Inventory</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
-    <script>
-        initializeDatabase();
-    </script>
+  <div class="page">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>The<br><span>Collector's</span><br>Hub</h1>
+      </div>
+      <nav class="nav">
+        <button class="btn-terminal">Sales Terminal →</button>
+      </nav>
+    </aside>
+    <!-- Main content -->
+    <main class="main">
+      <header class="header">
+        <h2>Admin Dashboard - Product Inventory</h2>
+      </header>
+      <section class="content">
+        <!-- Left: All Products -->
+        <div class="card product-list-card">
+          <h3>All Products</h3>
+          <div class="search-row">
+            <input id="searchInput" placeholder="Search by name..." />
+          </div>
+          <div id="adminProductList" class="admin-product-list">
+            <!-- Product items rendered by admin.js -->
+          </div>
+        </div>
+        <!-- Right: Add New Product -->
+        <div class="card add-product-card">
+          <h3>Add New Product</h3>
+          <form id="addProductForm" class="add-form">
+            <input id="productName" placeholder="Product Name" required />
+            <textarea id="productDesc" placeholder="Product Details" rows="3"></textarea>
+            <input id="productPrice" placeholder="Price" type="number" min="0" step="0.01" required />
+            <input id="productStock" placeholder="Stock Quantity" type="number" min="0" required />
+            <div class="image-preview" id="imagePreview">Image preview will appear here</div>
+            <label class="upload-btn">
+              <input id="imageUpload" type="file" accept="image/*" />
+              Upload Image...
+            </label>
+            <button id="addProductBtn" class="primary-btn" type="submit">Add Product</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal-backdrop hidden">
+    <div class="modal-content">
+      <h3>Edit Product</h3>
+      <form id="editForm">
+        <input id="editName" required />
+        <textarea id="editDesc" rows="3"></textarea>
+        <input id="editPrice" type="number" min="0" step="0.01" required />
+        <input id="editStock" type="number" min="0" required />
+        <div class="image-preview" id="editImagePreview">Image preview will appear here</div>
+        <label class="upload-btn">
+          <input id="editImageUpload" type="file" accept="image/*" />
+          Change Image...
+        </label>
+        <div class="modal-actions">
+          <button type="button" id="closeEditBtn">Cancel</button>
+          <button type="submit" class="primary-btn">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="storage.js"></script>
+  <script src="admin.js"></script>
 </body>
 </html>

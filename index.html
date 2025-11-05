@@ -1,1 +1,34 @@
-/*index html*/
+//moya ulit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sales Terminal</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="products.json"></script> 
+  <script src="storage.js" defer></script> 
+</head>
+<body>
+    
+  <h1>Sales Terminal</h1>
+ 
+  <div class="pos-product-list card">
+    <h2>All Products</h2>
+    <input type="text" id="searchBar" placeholder="Search product...">
+    <div id="productContainer"></div>   
+  </div>
+ 
+  <div class="current-sale-card card">
+    <h2>Current Sale</h2>
+    <ul id="cartList"></ul>
+    <button id="clearBtn">Clear Cart</button>
+  </div>
+ 
+  <div class="total-card card">
+    <h2>Grand Total</h2>
+    <p id="grandTotal">₱0</p>
+  </div>
+
+  
+</body>
+</html>
