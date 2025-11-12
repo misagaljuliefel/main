@@ -1,7 +1,6 @@
 /* =================================== */
-/* === 1. BASE STYLES (Romeo) ======== */
+/* === 1. BASE STYLES (Shared) ======= */
 /* =================================== */
-
 :root {
   --primary-blue: #2563EB;
   --dark-green: #1E4620;
@@ -15,18 +14,22 @@
 }
 
 * { box-sizing: border-box; }
-html,body { height: 100%; margin: 0; font-family: var(--font-family); background:#f3f6f7; color:#0f1724; }
+html, body { 
+  height: 100%; 
+  margin: 0; 
+  font-family: var(--font-family); 
+  background: #f3f6f7; 
+  color: #0f1724; 
+}
 
 /* page layout */
 .page { display: flex; min-height: 100vh; }
 
 /* =================================== */
-/* === 2. ADMIN PAGE (Romeo) ========= */
+/* === 2. SIDEBAR (Shared Admin + POS) === */
 /* =================================== */
-
-/* Sidebar */
 .sidebar {
-  width: 240px;
+  width: 250px;
   background: var(--dark-green);
   color: #fff;
   padding: 28px 20px;
@@ -36,42 +39,69 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
   gap: 18px;
 }
 .brand h1 {
-  margin:0;
-  font-size:22px;
-  line-height:1.05;
-  font-weight:800;
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.05;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
-.brand span { font-weight:700; color:#cbe6c1; }
-
-/* Main content */
-.main { flex: 1; padding: 28px 40px; }
-.header h2 {
-  margin: 0 0 16px 0;
-  font-size:34px;
-  text-align:center;
-  font-weight:800;
-  color:#1f2937;
+.sidebar button {
+  width: 210px;
+  padding: 12px;
+  background: #346637;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.sidebar button:hover {
+  background: #287a28;
 }
 
-/* content area with two columns */
+/* =================================== */
+/* === 3. MAIN CONTENT (Shared Grid) === */
+/* =================================== */
+.main {
+  flex: 1;
+  padding: 28px 40px;
+}
+
+/* Header */
+.header h2 {
+  margin: 0 0 24px 0;
+  font-size: 34px;
+  text-align: center;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* =================================== */
+/* === 4. ADMIN PAGE (All Products + Add) === */
+/* =================================== */
 .content {
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: 1fr 400px;
   gap: 24px;
-  align-items: start;
+  align-items: start; 
 }
 
 /* card base */
 .card {
   background: var(--card-bg);
-  border-radius: 12px;
+  border-radius: var(--radius);
   padding: 18px;
   box-shadow: var(--shadow);
+  overflow: hidden;
 }
 
 /* product list card */
-.product-list-card h3 { margin: 0 0 12px 0; font-size:20px; }
+.product-list-card{
+      height: 650px;
+      overflow-y: auto;
+}
+.add-product-card{
+      height: 650px; 
+}
 .search-row { margin-bottom: 16px; }
 .search-row input {
   width: 100%;
@@ -81,374 +111,357 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
   background: #fbfdff;
 }
 
-/* product list */
+/* product list items */
 .admin-product-list {
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 14px;
   max-height: 68vh;
-  overflow:auto;
+  overflow-y: auto;
   padding-right: 6px;
 }
 .admin-product {
-  display:flex;
-  gap: 14px;
+  display: flex;
+  gap: 20px;
   align-items: center;
   background: #f5f7fb;
   padding: 12px;
   border-radius: 10px;
 }
 .admin-product .thumb {
-  width:72px;
-  height:72px;
-  object-fit:cover;
-  border-radius:8px;
-  background:#ddd;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #ddd;
 }
-.admin-product .info { flex:1; }
-.admin-product .title { font-weight:700; margin-bottom:6px; color:#0f1724; }
-.admin-product .meta { font-size:13px; color:#374151; margin-bottom:4px; }
-.admin-product .desc { font-size:13px; color:#6b7280; }
+.admin-product .info { flex: 1; }
+.admin-product .title { font-weight: 700; margin-bottom: 6px; color: #0f1724; }
+.admin-product .meta { font-size: 13px; color: #374151; margin-bottom: 4px; }
+.admin-product .desc { font-size: 13px; color: #6b7280; }
+
 
 /* actions */
-.actions { display:flex; flex-direction:column; gap:8px; }
-.actions .edit-btn, .actions .delete-btn {
-  border:0; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:600;
-}
-.actions .edit-btn { background:#2563EB; color:#fff; }
-.actions .delete-btn { background:#ef4444; color:#fff; }
+.actions { display: flex; flex-direction: column; gap: 8px; }
+.actions .edit-btn { background: var(--primary-blue); color: #fff; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.actions .delete-btn { background: var(--danger-red); color: #fff; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
 /* empty state */
-.empty { color:#6b7280; padding:20px; text-align:center; }
+.empty { color: #6b7280; padding: 20px; text-align: center; }
 
-/* Add product card (right) */
-.add-product-card h3 { margin: 0 0 12px 0; font-size:20px; }
-.add-form { display:flex; flex-direction:column; gap:10px; }
-.add-form input[type="text"], .add-form input[type="number"], .add-form textarea {
-  padding:12px; border-radius:10px; border:1px dashed #e2e8f0; background:#fbfdff;
+/* add-product card inputs */
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* larger spacing for breathing room */
 }
+.add-form input,
+.add-form textarea {
+  width: 100%;
+  height: 44px;      /* consistent height for inputs */
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px dashed #e2e8f0;
+  background: #fbfdff;
+  font-family: 'Inter', sans-serif;
+}
+
 .upload-btn {
-  display:inline-block;
-  padding:10px;
-  border-radius:8px;
-  border:1px solid #e6eef2;
-  text-align:center;
-  cursor:pointer;
+  display: inline-block; padding: 10px; border-radius: 8px; border: 1px solid #e6eef2; text-align: center; cursor: pointer;
 }
-.upload-btn input { display:none; }
+.upload-btn input { display: none; }
 
 /* image preview */
 .image-preview {
-  min-height:88px;
-  border:2px dashed #e6eef2;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#94a3b8;
-  background-size:cover;
-  background-position:center;
+  min-height: 165px;
+  border: 2px dashed #e6eef2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #484f5a;
+  background-size: cover;
+  background-position: center;
 }
 
 /* primary button */
-.primary-btn {
-  margin-top:8px;
-  background: var(--primary-blue);
-  color:#fff;
-  border:none;
-  padding:12px 18px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:700;
+.primary-btn { 
+  margin-top: 8px; 
+  background: var(--primary-blue); 
+  color: #fff; 
+  border: none; 
+  padding: 12px 18px; 
+  border-radius: 10px; 
+  cursor: pointer; 
+  font-weight: 700; 
 }
 
-/* =================================== */
-/* === 3. SALES PAGE (Moya) ========== */
-/* =================================== */
-/* (left blank for now; Romeo leaves this zone for Moya) */
-
-body {
-margin: 0;
-font-family: Arial, sans-serif;
-background-color: #f2f4f6;
-}
- 
-/* Sidebar */
-.sidebar {
-width: 200px;
-height: 100vh;
-background-color: #164018;
-color: white;
-float: left;
-padding: 20px;
-box-sizing: border-box;
-}
- 
-.sidebar h2 {
-margin-top: 0;
-margin-bottom: 30px;
-}
- 
-.sidebar button {
-width: 100%;
-padding: 8px;
-background-color: #1c5e1c;
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-}
- 
-.sidebar button:hover {
-background-color: #287a28;
-}
- 
-/* Main Area */
-.main {
-margin-left: 220px;
-padding: 20px;
-}
- 
-.main h1 {
-text-align: center;
-color: #222;
-margin-bottom: 20px;
-}
- 
-/* Cards */
-.card {
-background-color: white;
-border-radius: 8px;
-padding: 15px;
-margin-bottom: 20px;
-box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
- 
-/* Left Side - All Products */
-#products {
-width: 45%;
-float: left;
-}
- 
-#products input {
-width: 95%;
-padding: 8px;
-border: 1px solid #ccc;
-border-radius: 5px;
-margin-bottom: 15px;
-}
- 
-.product {
-background-color: #f9f9f9;
-border: 1px solid #ddd;
-border-radius: 5px;
-margin-bottom: 10px;
-padding: 8px;
-overflow: hidden;
-}
- 
-.product img {
-float: left;
-margin-right: 10px;
-border-radius: 5px;
-}
- 
-.product p {
-margin: 0;
-font-size: 14px;
-color: #333;
-}
- 
-/* Added: Right Side (Current Sale + Total) */
-.right-side {
-width: 45%;
-float: right;
-}
- 
-/* Current Sale Section */
-#current-sale {
-position: relative;
-}
- 
-/* Added: Sale Header for title + button */
-.sale-header {
-overflow: hidden; /* keeps the floats aligned */
-margin-bottom: 10px;
-}
- 
-.sale-header h2 {
-float: left;
-margin: 0;
-}
- 
-.sale-header .clear {
-float: right;
-background-color: #dc3545;
-color: white;
-border: none;
-border-radius: 5px;
-padding: 5px 10px;
-cursor: pointer;
-}
- 
-.sale-header .clear:hover {
-background-color: #b52b27;
-}
- 
-.sale-item {
-background-color: #f9f9f9;
-border: 1px solid #ddd;
-border-radius: 5px;
-padding: 8px;
-margin-top: 10px;
-overflow: hidden;
-}
- 
-.sale-item img {
-float: left;
-margin-right: 10px;
-border-radius: 5px;
-}
- 
-.sale-item p {
-margin: 0;
-font-size: 14px;
-}
- 
-.sale-item button {
-background-color: #007bff;
-color: white;
-border: none;
-border-radius: 4px;
-width: 25px;
-height: 25px;
-cursor: pointer;
-}
- 
-.sale-item button:hover {
-background-color: #0056b3;
-}
- 
-/* Grand Total (aligned under Current Sale) */
-#total {
-text-align: center;
-}
- 
-#total h2 {
-font-size: 18px;
-margin-bottom: 10px;
-}
- 
-#total button {
-background-color: #007bff;
-color: white;
-border: none;
-padding: 10px 25px;
-border-radius: 5px;
-cursor: pointer;
-}
- 
-#total button:hover {
-background-color: #0056b3;
-}
-
-/* =================================== */
-/* === 4. MODALS (Misagal) =========== */
-/* =================================== */
-
+/* ============================= */
+/* === BEAUTIFIED MODALS ======= */
+/* ============================= */
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: rgba(2,6,23,0.5);
-  z-index: 999;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
+
+.modal-backdrop.hidden {
+  display: none;
+}
+
 .modal-content {
-  width: 480px;
-  background: #fff;
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 10px 36px rgba(2,6,23,0.3);
-}
-.modal-content h3 { margin-top: 0; }
-.modal-content input, .modal-content textarea { width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #e6eef2; }
-.modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:8px; }
-
-.hidden { display:none; }
-
-/* responsive */
-@media (max-width: 980px) {
-  .content { grid-template-columns: 1fr; }
-  .sidebar { display:none; }
-  .main { padding: 18px; }
+  background: var(--card-bg);
+  padding: 24px 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 400px;
+  max-width: 90%;
+  animation: fadeIn 0.25s ease;
 }
 
-
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9fafb;
-    padding: 20px;
+.modal-content h3 {
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
+  text-align: center;
 }
 
-h1, h2 {
-    color: #2c3e50;
+/* Inputs styled like Add Product */
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px dashed #e2e8f0;
+  background: #fbfdff;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 12px;
 }
 
-.nav-link {
-    display: inline-block;
-    margin-bottom: 10px;
-    color: #007bff;
-    text-decoration: none;
+/* Image preview consistency */
+.modal-content .image-preview {
+  min-height: 160px;
+  border: 2px dashed #e6eef2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 12px;
 }
 
-.nav-link:hover {
-    text-decoration: underline;
+/* Upload button match Add Product */
+/* Center Change Image button */
+.modal-content .upload-btn {
+  display: block;
+  margin: 0 auto 14px auto; /* centers and adds spacing below */
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid #e6eef2;
+  background: #f9fafb;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+  color: #111827;
+  transition: background 0.2s;
 }
 
-/* INPUTS AND BUTTONS */
-input, button {
-    display: block;
-    margin: 8px 0;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+.modal-content .upload-btn:hover {
+  background: #e9effa;
 }
 
-button {
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
+/* Center Save Changes + Cancel buttons in edit modal */
+/* Fix uneven Save Changes & Cancel buttons in edit modal */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 22px;
 }
 
-button:hover {
-    background-color: #0056b3;
+/* Apply equal size and alignment */
+/* Force both modal buttons to be exactly the same */
+.modal-actions #closeEditBtn,
+.modal-actions .primary-btn {
+  width: 140px;        /* exact same width */
+  height: 44px;        /* exact same height */
+  padding: 0 !important;  /* reset any previous padding */
+  margin: 0 !important;   /* reset margin */
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
 }
 
-/* PRODUCT CARDS */
-.product-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: white;
+/* Cancel button styling */
+.modal-actions #closeEditBtn {
+  background: #e5e7eb;
+  color: #111827;
+}
+.modal-actions #closeEditBtn:hover {
+  background: #d1d5db;
 }
 
-.product-card img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 6px;
+/* Save Changes button styling */
+.modal-actions .primary-btn {
+  background: var(--primary-blue);
+  color: #fff;
+}
+.modal-actions .primary-btn:hover {
+  background: #1d4ed8;
 }
 
-/* FORM SECTION */
-.form-section {
-    margin-bottom: 20px;
+/* =================================== */
+/* === 5. SALES / POS PAGE (Moya) === */
+/* =================================== */
+
+.pos-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 320px; /* left = All Products wider, right = stacked cards */
+  gap: 24px;
+  align-items: start;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+/* POS All Products card (left) */
+.pos-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;   /* spacing between each product */
+  height: 495px;
+  overflow-y: auto;
+  padding-right: 6px;
 }
+
+.pos-product {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #f5f7fb;
+  padding: 12px;          /* slightly bigger for click target */
+  border-radius: 10px;
+  cursor: pointer;         /* indicate it's clickable */
+  transition: background 0.2s;
+}
+
+.pos-product:hover {
+  background: #e2f0ff;     /* subtle hover effect */
+}
+
+.pos-product img {
+  width: 72px;             /* match Admin thumb size */
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.pos-info {
+  flex: 1;
+}
+.pos-title {
+  font-weight: 700;
+  color: #0f1724;
+}
+.pos-meta {
+  font-size: 13px;
+  color: #374151;
+}
+/* POS search input styled like Admin */
+#posSearch {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e6eef2;
+  background: #fbfdff;
+  margin-bottom: 16px; /* matches Admin spacing */
+}
+
+
+/* Actions (Add to cart) */
+.pos-actions button {
+  background: var(--primary-blue);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.pos-actions button:hover { background: #1d4ed8; }
+
+/* Current Sale (middle) */
+/* Keep current-sale-card height as is */
+.current-sale-card {
+  height: 450px;   /* same fixed height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header area with title + Clear Cart button */
+.current-sale-card h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* pushes title left, button right */
+  margin-bottom: 12px;
+}
+
+/* Optional: a bit of spacing from the right edge */
+#clearCartBtn {
+  margin-right: 4px;
+}
+
+.cart-scroll {
+  flex: 1;           /* take all remaining vertical space */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cart-item { display: flex; justify-content: space-between; align-items: center; background: #f5f7fb; padding: 8px; border-radius: 8px; }
+.cart-left { flex: 1; }
+.cart-name { font-weight: 600; color: #0f1724; }
+.cart-sub { font-size: 13px; color: #374151; }
+.cart-right { display: flex; align-items: center; gap: 6px; }
+.cart-right button {
+  width: 28px; height: 28px; border-radius: 6px; border: none; cursor: pointer; background: var(--primary-blue); color: #fff;
+}
+.cart-right button:hover { background: #1d4ed8; }
+
+/* Grand Total (right) */
+.total-card {
+  text-align: center;
+  height: 186px;  /* fixed height */
+  margin-top: 12px;  /* small gap below current sale card */
+}
+.amount { font-size: 24px; font-weight: 700; color: #0f1724; margin-top: 12px; }
+
+/* Small buttons */
+.small-btn {
+  font-size: 12px; padding: 4px 8px; border-radius: 6px; border: none; cursor: pointer; background: #ef4444; color: white;
+}
+.small-btn:hover { background: #dc2626; }
+
+/* Modals (shared) */
+.modal-backdrop {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+.modal-backdrop.hidden { display: none; }
+.modal-content {
+  background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: var(--shadow);
+  width: 320px; max-width: 90%;
+}
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; }
+.danger-btn { background: var(--danger-red); color: #fff; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
