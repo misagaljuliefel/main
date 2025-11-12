@@ -2,23 +2,42 @@
 /* === 1. BASE STYLES (Romeo) ======== */
 /* =================================== */
 
+/* FIX: Import the fonts used in the screenshots */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
   --primary-blue: #2563EB;
   --dark-green: #1E4620;
-  --muted-gray: #eef2f5;
+  /* FIX: Added more specific grays from the screenshot */
+  --bg-light: #f8faff;       /* Lightest page background */
+  --bg-gray: #f5f7fb;       /* Background for sub-cards */
+  --border-gray: #e6eef2;    /* Border for inputs */
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
   --card-bg: #ffffff;
   --danger-red: #ef4444;
-  --accent: #2563EB;
   --shadow: 0 6px 18px rgba(14, 30, 37, .08);
   --radius: 12px;
-  --font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  /* FIX: Updated font-family to match the new imports */
+  --font-family-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  --font-family-heading: 'Poppins', system-ui;
 }
 
 * { box-sizing: border-box; }
-html,body { height: 100%; margin: 0; font-family: var(--font-family); background:#f3f6f7; color:#0f1724; }
+html,body { 
+  height: 100%; 
+  margin: 0; 
+  font-family: var(--font-family-body); 
+  /* FIX: Updated background to match screenshot */
+  background: var(--bg-light); 
+  color: var(--text-dark); 
+}
 
 /* page layout */
-.page { display: flex; min-height: 100vh; }
+.page { 
+  display: flex; 
+  min-height: 100vh; 
+}
 
 /* =================================== */
 /* === 2. ADMIN PAGE (Romeo) ========= */
@@ -26,140 +45,246 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
 
 /* Sidebar */
 .sidebar {
-  width: 240px;
+  width: 280px; /* FIX: Wider sidebar to match screenshot */
   background: var(--dark-green);
   color: #fff;
-  padding: 28px 20px;
+  padding: 28px 24px; /* FIX: Adjusted padding */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 18px;
+  flex-shrink: 0; /* FIX: Prevent sidebar from shrinking */
 }
-.brand h1 {
+
+/* FIX: Changed .brand h1 to .sidebar .brand-title */
+.sidebar .brand-title {
+  font-family: var(--font-family-heading);
   margin:0;
-  font-size:22px;
-  line-height:1.05;
-  font-weight:800;
+  font-size: 28px; /* FIX: Larger font */
+  line-height: 1.2;
+  font-weight: 800;
   letter-spacing: -0.02em;
+  margin-bottom: 32px; /* FIX: Added space below title */
 }
-.brand span { font-weight:700; color:#cbe6c1; }
+
+/* FIX: Added shared style for sidebar navigation buttons */
+.nav-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  width: 100%;
+  transition: background 0.2s ease;
+}
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+.nav-button span {
+  font-size: 16px;
+}
 
 /* Main content */
-.main { flex: 1; padding: 28px 40px; }
+.main { 
+  flex: 1; 
+  padding: 32px 40px; 
+  /* FIX: Add overflow for main content area if needed */
+  overflow-y: auto; 
+  height: 100vh;
+}
 .header h2 {
-  margin: 0 0 16px 0;
-  font-size:34px;
-  text-align:center;
-  font-weight:800;
-  color:#1f2937;
+  margin: 0 0 24px 0; /* FIX: More space below title */
+  font-size: 30px; /* FIX: Slightly smaller, as in screenshot */
+  font-family: var(--font-family-heading);
+  text-align: left; /* FIX: Title is left-aligned in screenshot */
+  font-weight: 800;
+  color: var(--text-dark);
 }
 
 /* content area with two columns */
 .content {
   display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 24px;
+  /* FIX: Grid columns to match screenshot (left=wider, right=form) */
+  grid-template-columns: 1fr 420px; 
+  gap: 32px; /* FIX: Wider gap */
   align-items: start;
 }
 
 /* card base */
 .card {
   background: var(--card-bg);
-  border-radius: 12px;
-  padding: 18px;
+  border-radius: var(--radius);
+  padding: 24px; /* FIX: Increased padding */
   box-shadow: var(--shadow);
 }
 
 /* product list card */
-.product-list-card h3 { margin: 0 0 12px 0; font-size:20px; }
-.search-row { margin-bottom: 16px; }
+.product-list-card h3 { 
+  margin: 0 0 16px 0; /* FIX: More margin */
+  font-size: 22px; /* FIX: Larger font */
+  font-family: var(--font-family-heading);
+}
+
+.search-row { margin-bottom: 20px; }
 .search-row input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 14px 16px; /* FIX: Taller input */
   border-radius: 10px;
-  border: 1px solid #e6eef2;
-  background: #fbfdff;
+  border: 1px solid var(--border-gray);
+  background: #fff;
+  font-size: 16px;
+}
+.search-row input::placeholder {
+  color: var(--text-light);
 }
 
 /* product list */
 .admin-product-list {
   display:flex;
   flex-direction: column;
-  gap: 14px;
-  max-height: 68vh;
-  overflow:auto;
-  padding-right: 6px;
+  gap: 16px; /* FIX: More space */
+  /* FIX: Removed fixed height, let card grow. */
+  /* max-height: 68vh; */
+  overflow: visible;
+  padding-right: 0;
 }
 .admin-product {
   display:flex;
-  gap: 14px;
+  gap: 16px;
   align-items: center;
-  background: #f5f7fb;
-  padding: 12px;
+  background: var(--bg-gray);
+  padding: 16px;
   border-radius: 10px;
 }
 .admin-product .thumb {
-  width:72px;
-  height:72px;
-  object-fit:cover;
-  border-radius:8px;
-  background:#ddd;
+  width: 90px;  /* FIX: Larger image */
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #ddd;
 }
 .admin-product .info { flex:1; }
-.admin-product .title { font-weight:700; margin-bottom:6px; color:#0f1724; }
-.admin-product .meta { font-size:13px; color:#374151; margin-bottom:4px; }
-.admin-product .desc { font-size:13px; color:#6b7280; }
+.admin-product .title { 
+  font-weight: 700; 
+  margin-bottom: 6px; 
+  color: var(--text-dark);
+  font-size: 18px; /* FIX: Larger font */
+}
+.admin-product .meta { 
+  font-size: 14px; /* FIX: Larger font */
+  color: var(--text-light); 
+  margin-bottom: 4px; 
+}
+.admin-product .desc { 
+  font-size: 14px; /* FIX: Larger font */
+  color: var(--text-light); 
+  /* FIX: Truncate long descriptions */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* actions */
-.actions { display:flex; flex-direction:column; gap:8px; }
+.actions { display:flex; flex-direction:column; gap: 8px; }
 .actions .edit-btn, .actions .delete-btn {
-  border:0; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:600;
+  border:0; 
+  padding: 10px 14px; /* FIX: Larger buttons */
+  border-radius: 8px; 
+  cursor:pointer; 
+  font-weight: 600;
+  font-size: 14px;
 }
-.actions .edit-btn { background:#2563EB; color:#fff; }
-.actions .delete-btn { background:#ef4444; color:#fff; }
+.actions .edit-btn { background: var(--primary-blue); color:#fff; }
+.actions .delete-btn { background: var(--danger-red); color:#fff; }
 
 /* empty state */
-.empty { color:#6b7280; padding:20px; text-align:center; }
+.empty { color: var(--text-light); padding: 20px; text-align:center; font-size: 16px; }
 
 /* Add product card (right) */
-.add-product-card h3 { margin: 0 0 12px 0; font-size:20px; }
-.add-form { display:flex; flex-direction:column; gap:10px; }
-.add-form input[type="text"], .add-form input[type="number"], .add-form textarea {
-  padding:12px; border-radius:10px; border:1px dashed #e2e8f0; background:#fbfdff;
+.add-product-card h3 { 
+  margin: 0 0 16px 0; 
+  font-size: 22px; 
+  font-family: var(--font-family-heading);
 }
-.upload-btn {
-  display:inline-block;
-  padding:10px;
-  border-radius:8px;
-  border:1px solid #e6eef2;
-  text-align:center;
-  cursor:pointer;
+.add-form { 
+  display:flex; 
+  flex-direction:column; 
+  gap: 16px; /* FIX: Increased gap */
 }
-.upload-btn input { display:none; }
+
+/* FIX: Shared styles for all form inputs */
+.add-form .form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: -8px; /* Pull label closer to its input */
+}
+
+.add-form input[type="text"], 
+.add-form input[type="number"], 
+.add-form textarea {
+  width: 100%;
+  padding: 14px 16px; /* FIX: Taller inputs */
+  border-radius: 10px;
+  /* FIX: Solid border, not dashed */
+  border: 1px solid var(--border-gray); 
+  background: #fff;
+  font-size: 16px;
+  font-family: var(--font-family-body);
+}
 
 /* image preview */
 .image-preview {
-  min-height:88px;
-  border:2px dashed #e6eef2;
-  border-radius:10px;
+  min-height: 150px; /* FIX: Taller preview */
+  border: 2px dashed var(--border-gray);
+  border-radius: 10px;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#94a3b8;
-  background-size:cover;
-  background-position:center;
+  color: var(--text-light);
+  background-size: cover;
+  background-position: center;
+  font-size: 14px;
+  text-align: center;
+  padding: 16px;
 }
+
+/* FIX: Renamed/Restyled upload button to match screenshot */
+.upload-button {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-gray);
+  background: var(--card-bg);
+  color: var(--text-dark);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.upload-button:hover {
+  background: var(--bg-gray);
+}
+.upload-button input { display:none; }
 
 /* primary button */
 .primary-btn {
-  margin-top:8px;
+  margin-top: 8px;
   background: var(--primary-blue);
-  color:#fff;
-  border:none;
-  padding:12px 18px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:700;
+  color: #fff;
+  border: none;
+  padding: 16px; /* FIX: Taller button */
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px; /* FIX: Larger text */
+  width: 100%; /* FIX: Full width */
+}
+.primary-btn:hover {
+  background: #1d4ed8;
 }
 
 /* =================================== */
@@ -167,112 +292,135 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
 /* =================================== */
 
 /* === OVERALL PAGE WRAPPER === */
-/* Uses same structure as Romeo's Admin layout for consistent sizing (1440x900) */
 .sales-page {
   display: flex;
   min-height: 100vh;
-  background: #f3f6f7;
-  overflow: hidden; /* prevent unwanted page scrollbars */
+  background: var(--bg-light); /* FIX: Match admin bg */
+  overflow: hidden; 
 }
 
-/* === SIDEBAR (same style, just renamed) === */
+/* === SIDEBAR (reuse admin styles) === */
 .sales-sidebar {
-  width: 240px;
+  width: 280px; /* FIX: Match admin sidebar */
   background: var(--dark-green);
   color: #fff;
-  padding: 28px 20px;
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  flex-shrink: 0;
 }
-.sales-sidebar h1 {
-  font-size: 22px;
-  margin: 0;
+/* FIX: Changed h1 to brand-title */
+.sales-sidebar .brand-title {
+  font-family: var(--font-family-heading);
+  margin:0;
+  font-size: 28px;
+  line-height: 1.2;
   font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
 }
-.sales-sidebar h1 span {
-  color: #cbe6c1;
-}
+/* FIX: Removed span rule, handled by brand-title */
 
 /* === MAIN AREA === */
 .sales-main {
   flex: 1;
-  padding: 28px 40px;
+  padding: 32px 40px;
+  overflow-y: auto;
+  height: 100vh;
 }
 
 /* === PAGE TITLE === */
 .sales-header h2 {
-  margin: 0 0 16px 0;
-  font-size: 34px;
-  text-align: center;
+  margin: 0 0 24px 0;
+  font-size: 30px;
+  font-family: var(--font-family-heading);
+  text-align: left; /* FIX: Match admin title */
   font-weight: 800;
-  color: #1f2937;
+  color: var(--text-dark);
 }
 
 /* === MAIN CONTENT GRID === */
-/* Left: all products / Right: current sale & total */
+/* FIX: This grid setup is more complex */
+/* It's a 2-col grid, but the right col is also a flex container */
 .sales-content {
   display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 24px;
+  grid-template-columns: 1fr 420px; /* FIX: Match admin grid */
+  gap: 32px;
   align-items: start;
+  /* FIX: Ensure grid stretches to fill height */
+  height: calc(100vh - 88px - 32px); /* 100vh - header - padding */
 }
 
 /* === SHARED CARD BASE === */
 .sales-card {
   background: var(--card-bg);
   border-radius: var(--radius);
-  padding: 18px;
+  padding: 24px;
   box-shadow: var(--shadow);
+  /* FIX: Make cards stretch to fill their grid/flex container */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* =================================== */
 /* === LEFT SIDE: ALL PRODUCTS ======= */
 /* =================================== */
 .all-products h3 {
-  margin: 0 0 12px 0;
-  font-size: 20px;
+  margin: 0 0 16px 0;
+  font-size: 22px;
+  font-family: var(--font-family-heading);
 }
 
 .all-products .search-row {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .all-products input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-radius: 10px;
-  border: 1px solid #e6eef2;
-  background: #fbfdff;
+  border: 1px solid var(--border-gray);
+  background: #fff;
+  font-size: 16px;
+}
+.all-products input::placeholder {
+  color: var(--text-light);
 }
 
 /* product listing area (scrolls inside only) */
 .sales-product-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  max-height: 68vh; /* same height as admin product list */
+  gap: 16px;
+  /* FIX: Make list scrollable within the card */
+  flex: 1; /* This is the key */
   overflow-y: auto;
   padding-right: 6px;
+  margin-right: -6px;
 }
 
-/* each product card (like admin but no edit/delete) */
+/* each product card */
 .sales-product {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   align-items: center;
-  background: #f5f7fb;
-  padding: 12px;
+  background: var(--bg-gray);
+  padding: 16px;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  /* FIX: Add a border */
+  border: 1px solid var(--bg-gray);
 }
 .sales-product:hover {
-  background: #e2e8f0;
+  background: var(--card-bg);
+  border-color: var(--primary-blue);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1);
 }
 
 .sales-product .thumb {
-  width: 72px;
-  height: 72px;
+  width: 90px;
+  height: 90px;
   object-fit: cover;
   border-radius: 8px;
   background: #ddd;
@@ -284,49 +432,92 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
 .sales-product .title {
   font-weight: 700;
   margin-bottom: 6px;
-  color: #0f1724;
+  color: var(--text-dark);
+  font-size: 18px;
 }
 .sales-product .meta {
-  font-size: 13px;
-  color: #374151;
+  font-size: 14px;
+  color: var(--text-light);
   margin-bottom: 4px;
 }
-.sales-product .desc {
-  font-size: 13px;
-  color: #6b7280;
+/* FIX: Removed description, not in screenshot */
+
+/* =================================== */
+/* === RIGHT SIDE (Column 2) ========= */
+/* =================================== */
+
+/* FIX: This wrapper holds the two right-side cards */
+.sales-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* Gap between "Current Sale" and "Grand Total" */
+  height: 100%; /* Make it fill the grid cell */
 }
 
 /* =================================== */
-/* === RIGHT SIDE: CURRENT SALE ====== */
+/* === RIGHT-TOP: CURRENT SALE ====== */
 /* =================================== */
 
-.current-sale h3 {
-  margin: 0 0 12px 0;
-  font-size: 20px;
+/* FIX: Card takes available space, but doesn't force height */
+.current-sale {
+  flex: 1; /* This is the key: it grows */
+  height: auto;
+  max-height: 60%; /* Example: limit height */
 }
+
+/* FIX: Header for current sale card */
+.current-sale-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.current-sale-header h3 {
+  margin: 0;
+  font-size: 22px;
+  font-family: var(--font-family-heading);
+}
+
+/* FIX: Style for the Clear Cart button */
+.clear-cart-btn {
+  background: none;
+  border: 1px solid var(--border-gray);
+  color: var(--text-dark);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.clear-cart-btn:hover {
+  background: var(--bg-gray);
+}
+
 
 /* sale items list */
 .sale-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: 45vh;
+  /* FIX: Let the card's flexbox handle scrolling */
+  flex: 1;
   overflow-y: auto;
   padding-right: 6px;
 }
 
-/* each sale item (smaller than product card) */
+/* each sale item */
 .sale-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: #f5f7fb;
+  gap: 12px;
+  background: var(--bg-gray);
   border-radius: 10px;
-  padding: 10px;
+  padding: 12px;
 }
 .sale-item img {
-  width: 56px;
-  height: 56px;
+  width: 60px; /* FIX: Larger image */
+  height: 60px;
   border-radius: 8px;
   object-fit: cover;
 }
@@ -335,74 +526,146 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
 }
 .sale-item .name {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px; /* FIX: Larger font */
+  margin-bottom: 4px;
 }
-.sale-item .qty {
-  font-size: 13px;
-  color: #555;
+.sale-item .price { /* FIX: Added price */
+  font-size: 14px;
+  color: var(--text-light);
 }
 
-/* === buttons in sale item === */
-.sale-item button {
-  background: var(--primary-blue);
-  color: #fff;
-  border: none;
+/* FIX: New style for the quantity control */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-gray);
   border-radius: 8px;
-  width: 28px;
-  height: 28px;
+  padding: 4px;
+}
+.quantity-control .qty-btn {
+  background: none;
+  border: none;
+  color: var(--primary-blue);
+  width: 24px;
+  height: 24px;
   cursor: pointer;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+}
+.quantity-control .qty-display {
+  font-size: 14px;
   font-weight: 700;
+  width: 20px; /* Fixed width for alignment */
+  text-align: center;
 }
-.sale-item button:hover {
-  background: #1d4ed8;
-}
+
 
 /* =================================== */
-/* === GRAND TOTAL SECTION =========== */
+/* === RIGHT-BOTTOM: GRAND TOTAL ===== */
 /* =================================== */
 .grand-total {
-  margin-top: 16px;
-  text-align: center;
-  background: #f9fafb;
-  border-radius: 10px;
-  padding: 14px;
+  /* FIX: Card is not flexible, it has a fixed size */
+  flex: 0 0 auto; 
+  text-align: center; /* FIX: Center align all content */
 }
-.grand-total h4 {
-  font-size: 18px;
-  margin: 0 0 8px 0;
-  color: #1f2937;
+/* FIX: Style for the big total display */
+.grand-total .total-display {
+  margin-bottom: 16px;
 }
-.checkout-btn {
+.grand-total .total-display span {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-light);
+  display: block;
+}
+.grand-total .total-display .amount {
+  font-family: var(--font-family-heading);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.1;
+  margin-top: 4px;
+}
+
+/* FIX: Renamed checkout-btn to finalize-btn */
+.finalize-btn {
   background: var(--primary-blue);
   color: #fff;
   border: none;
-  padding: 12px 18px;
+  padding: 16px;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 700;
+  font-size: 16px;
+  width: 100%; /* FIX: Full width button */
 }
-.checkout-btn:hover {
+.finalize-btn:hover {
   background: #1d4ed8;
 }
 
 /* Empty state text */
 .empty-sale {
-  color: #6b7280;
+  color: var(--text-light);
   text-align: center;
   padding: 20px;
+  font-size: 16px;
 }
 
 /* =================================== */
-/* === RESPONSIVE LAYOUT ============= */
+/* === RESPONSIVE LAYOUT (Kept) ====== */
 /* =================================== */
 @media (max-width: 980px) {
-  .sales-content {
+  .content, .sales-content {
     grid-template-columns: 1fr;
   }
-  .sales-sidebar {
+  .sidebar, .sales-sidebar {
     display: none;
   }
-  .sales-main {
+  .main, .sales-main {
     padding: 18px;
+    height: auto;
+  }
+  .sales-right-column {
+    gap: 16px;
+  }
+  .sales-content {
+    height: auto;
   }
 }
+
+/* =================================== */
+/* === 4. MODALS (Misagal) =========== */
+/* =================================== */
+/* (This is where your modal styles will go) */
+
+.modal-backdrop {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal-content h3 {
+  font-family: var(--font-family-heading);
+  font-size: 24px;
+  margin: 0 0 16px 0;
+}
+/* (etc...) */
