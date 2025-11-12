@@ -166,16 +166,16 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
 /* === 3. SALES PAGE (Moya) ========== */
 /* =================================== */
 
-/* === Sales Page Layout Wrapper === */
-/* Similar page setup as Admin (fixed 1440x900) */
+/* === OVERALL PAGE WRAPPER === */
+/* Uses same structure as Romeo's Admin layout for consistent sizing (1440x900) */
 .sales-page {
   display: flex;
-  min-height: 100vh; /* full height viewport */
+  min-height: 100vh;
   background: #f3f6f7;
-  overflow: hidden; /* prevents scrollbars appearing for small gaps */
+  overflow: hidden; /* prevent unwanted page scrollbars */
 }
 
-/* === Sidebar (same style as Admin’s) === */
+/* === SIDEBAR (same style, just renamed) === */
 .sales-sidebar {
   width: 240px;
   background: var(--dark-green);
@@ -185,15 +185,23 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
   flex-direction: column;
   gap: 18px;
 }
+.sales-sidebar h1 {
+  font-size: 22px;
+  margin: 0;
+  font-weight: 800;
+}
+.sales-sidebar h1 span {
+  color: #cbe6c1;
+}
 
-/* === Main Content Area === */
+/* === MAIN AREA === */
 .sales-main {
   flex: 1;
   padding: 28px 40px;
-  overflow: hidden; /* locks layout height so it won’t scroll the full page */
 }
 
-.sales-main h2 {
+/* === PAGE TITLE === */
+.sales-header h2 {
   margin: 0 0 16px 0;
   font-size: 34px;
   text-align: center;
@@ -201,38 +209,35 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
   color: #1f2937;
 }
 
-/* === Two-column layout (left: All Products, right: Current Sale) === */
+/* === MAIN CONTENT GRID === */
+/* Left: all products / Right: current sale & total */
 .sales-content {
   display: grid;
-  grid-template-columns: 1fr 360px; /* same width division as Admin */
+  grid-template-columns: 1fr 360px;
   gap: 24px;
   align-items: start;
-  height: calc(900px - 150px); /* fixes visible height zone based on 1440x900 */
-  overflow: hidden;
 }
 
-/* === Card base (same as Admin for visual consistency) === */
+/* === SHARED CARD BASE === */
 .sales-card {
   background: var(--card-bg);
   border-radius: var(--radius);
   padding: 18px;
   box-shadow: var(--shadow);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
-/* === Left: All Products Section === */
-.sales-products h3 {
+/* =================================== */
+/* === LEFT SIDE: ALL PRODUCTS ======= */
+/* =================================== */
+.all-products h3 {
   margin: 0 0 12px 0;
   font-size: 20px;
 }
 
-/* search bar */
-.sales-products .search-row {
-  margin-bottom: 14px;
+.all-products .search-row {
+  margin-bottom: 16px;
 }
-.sales-products input {
+.all-products input {
   width: 100%;
   padding: 12px 14px;
   border-radius: 10px;
@@ -240,17 +245,17 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
   background: #fbfdff;
 }
 
-/* product list (same size as Admin’s) */
+/* product listing area (scrolls inside only) */
 .sales-product-list {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  max-height: 68vh; /* same height as admin product list */
   overflow-y: auto;
-  max-height: 68vh; /* consistent scroll area */
   padding-right: 6px;
 }
 
-/* each product card */
+/* each product card (like admin but no edit/delete) */
 .sales-product {
   display: flex;
   gap: 14px;
@@ -262,7 +267,7 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
   transition: background 0.2s ease;
 }
 .sales-product:hover {
-  background: #e2e8f0; /* light hover feedback */
+  background: #e2e8f0;
 }
 
 .sales-product .thumb {
@@ -276,39 +281,41 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
 .sales-product .info {
   flex: 1;
 }
-
 .sales-product .title {
   font-weight: 700;
   margin-bottom: 6px;
   color: #0f1724;
 }
-
 .sales-product .meta {
   font-size: 13px;
   color: #374151;
   margin-bottom: 4px;
 }
-
 .sales-product .desc {
   font-size: 13px;
   color: #6b7280;
 }
 
-/* === Right: Current Sale Section === */
+/* =================================== */
+/* === RIGHT SIDE: CURRENT SALE ====== */
+/* =================================== */
+
 .current-sale h3 {
-  margin: 0 0 10px 0;
+  margin: 0 0 12px 0;
   font-size: 20px;
 }
 
+/* sale items list */
 .sale-list {
-  flex: 1;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: 50vh; /* prevents overflow beyond layout */
+  max-height: 45vh;
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
+/* each sale item (smaller than product card) */
 .sale-item {
   display: flex;
   align-items: center;
@@ -317,39 +324,54 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
   border-radius: 10px;
   padding: 10px;
 }
-
 .sale-item img {
   width: 56px;
   height: 56px;
   border-radius: 8px;
   object-fit: cover;
 }
-
 .sale-item .details {
   flex: 1;
 }
-
 .sale-item .name {
   font-weight: 700;
   font-size: 14px;
 }
-
 .sale-item .qty {
   font-size: 13px;
   color: #555;
 }
 
-/* total area */
-.total-section {
-  text-align: center;
+/* === buttons in sale item === */
+.sale-item button {
+  background: var(--primary-blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.sale-item button:hover {
+  background: #1d4ed8;
+}
+
+/* =================================== */
+/* === GRAND TOTAL SECTION =========== */
+/* =================================== */
+.grand-total {
   margin-top: 16px;
+  text-align: center;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 14px;
 }
-
-.total-section h4 {
+.grand-total h4 {
   font-size: 18px;
-  margin-bottom: 10px;
+  margin: 0 0 8px 0;
+  color: #1f2937;
 }
-
 .checkout-btn {
   background: var(--primary-blue);
   color: #fff;
@@ -359,22 +381,28 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
   cursor: pointer;
   font-weight: 700;
 }
-
 .checkout-btn:hover {
   background: #1d4ed8;
 }
 
-/* Empty message */
+/* Empty state text */
 .empty-sale {
-  text-align: center;
   color: #6b7280;
-  font-size: 14px;
-  padding: 20px 0;
+  text-align: center;
+  padding: 20px;
 }
 
-/* responsive (optional) */
+/* =================================== */
+/* === RESPONSIVE LAYOUT ============= */
+/* =================================== */
 @media (max-width: 980px) {
-  .sales-content { grid-template-columns: 1fr; }
-  .sales-sidebar { display: none; }
-  .sales-main { padding: 18px; }
+  .sales-content {
+    grid-template-columns: 1fr;
+  }
+  .sales-sidebar {
+    display: none;
+  }
+  .sales-main {
+    padding: 18px;
+  }
 }
