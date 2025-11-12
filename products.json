@@ -3,11 +3,6 @@
     "productPrice": 150.00, "stockQuantity": 1, "productImage": "myfigure.jpg"},
 
     { "productName": "Gundam Assorted 2", "productDetail": "Limited Edition Gundam Model.\nMissing pieces.",
-    "productPrice": 150.00, "stockQuantity": 1, "productImage": "actionfigure.jpg"},
-
-    { "productName": "Small Collectible Cars", "productDetail": "1 set of 5 pieces.\nIssue: White one only has 3 pcs rubber wheel.",
-    "productPrice": 60.00, "stockQuantity": 4, "productImage": "gundam.jpg"},
-
-    { "productName": "Plant VS Zombies: Gargantuar", "productDetail": "Buy in set for discounted price.\nNo issues.",
-    "productPrice": 60.00, "stockQuantity": 4, "productImage": "gundam.jpg"}
+    "productPrice": 150.00, "stockQuantity": 1, "productImage": "actionfigure.jpg"}
 ]
+
