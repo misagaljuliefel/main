@@ -1,2 +1,65 @@
-/*lahat, sa huli na to*/
-/*style*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9fafb;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+.nav-link {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* INPUTS AND BUTTONS */
+input, button {
+    display: block;
+    margin: 8px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* PRODUCT CARDS */
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: white;
+}
+
+.product-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* FORM SECTION */
+.form-section {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
