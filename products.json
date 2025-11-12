@@ -1,10 +1,13 @@
 [
-    { "productName": "My Figure", "productDetail": "One of a  kind",
-    "productPrice": 10000000000, "stockQuantity": 1, "productImage": "myfigure.jpg"},
+    { "productName": "Gundam Assorted 1", "productDetail": "Limited Edition Gundam Model.\nMissing pieces.",
+    "productPrice": 150.00, "stockQuantity": 1, "productImage": "myfigure.jpg"},
 
-    { "productName": "Spiderman 1 Figure", "productDetail": "Superhero action figure",
-    "productPrice": 150.00, "stockQuantity": 10, "productImage": "actionfigure.jpg"},
+    { "productName": "Gundam Assorted 2", "productDetail": "Limited Edition Gundam Model.\nMissing pieces.",
+    "productPrice": 150.00, "stockQuantity": 1, "productImage": "actionfigure.jpg"},
 
-    { "productName": "Gundam Figure", "productDetail": "Mecha model kit",
-    "productPrice": 150.00, "stockQuantity": 2, "productImage": "gundam.jpg"}
+    { "productName": "Small Collectible Cars", "productDetail": "1 set of 5 pieces.\nIssue: White one only has 3 pcs rubber wheel.",
+    "productPrice": 60.00, "stockQuantity": 4, "productImage": "gundam.jpg"},
+
+    { "productName": "Plant VS Zombies: Gargantuar", "productDetail": "Buy in set for discounted price.\nNo issues.",
+    "productPrice": 60.00, "stockQuantity": 4, "productImage": "gundam.jpg"}
 ]
