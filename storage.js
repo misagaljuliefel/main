@@ -22,7 +22,9 @@ function initializeDatabase() {
             let stringedProduct = JSON.stringify(itemsInPackage);
             localStorage.setItem("myProductItems", stringedProduct);
             console.log("Database created in Local Storage!");
+            ensureIds(); // <--- safer than timeout
         })
+
         .catch(function (error) {
             console.log("Error found: " + error);
         });
