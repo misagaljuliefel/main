@@ -2,28 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sales Terminal</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Sales Terminal</h1>
-  <a href="admin.html" class="nav-link">Go to Admin Dashboard</a>
+  <div class="page">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>The<br><span>Collector's</span><br>Hub</h1>
+      </div>
+      <nav class="nav">
+        <button class="btn-terminal" id="goToAdmin">Admin Dashboard →</button>
+      </nav>
+    </aside>
 
-  <!-- SEARCH BAR -->
-  <input type="text" id="searchBar" placeholder="Search product...">
+    <main class="main">
+      <header class="header">
+        <h2>Sales Terminal</h2>
+      </header>
 
-  <!-- PRODUCT LIST -->
-  <div id="productContainer"></div>
+      <section class="content pos-grid">
+        <!-- All Products -->
+        <div class="card pos-product-list">
+          <h3>All Products</h3>
+          <input id="posSearch" placeholder="Search by name..." />
+          <div id="productContainer" class="product-scroll"></div>
+        </div>
 
-  <!-- CART SECTION -->
-  <h2>Cart</h2>
-  <ul id="cartList"></ul>
-  <p>Total: <span id="grandTotal">₱0.00</span></p>
-  <button id="clearBtn">Clear Cart</button>
+        <!-- Current Sale -->
+        <div class="card current-sale-card">
+          <h3>Current Sale <button id="clearCartBtn" class="small-btn">Clear Cart</button></h3>
+          <div id="cartContainer" class="cart-scroll"></div>
+          <button id="finalizeBtn" class="primary-btn fullwidth">Finalize Sale</button>
+        </div>
 
-  <!-- JS SCRIPTS -->
-  <script src="storage.js" defer></script>
+        <!-- Grand Total -->
+        <div class="card total-card">
+          <h3>Grand Total</h3>
+          <div class="grand-total-display">
+            <div id="grandTotal" class="amount">₱0.00</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Stock Error Modal -->
+  <div id="stockModal" class="modal-backdrop hidden">
+    <div class="modal-content">
+      <h3>Stock Error</h3>
+      <p id="stockErrorMessage"></p>
+      <div class="modal-actions">
+        <button id="closeStockBtn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="storage.js"></script>
   <script src="pos.js" defer></script>
 </body>
 </html>
