@@ -1,143 +1,454 @@
-/* Basic reset + root colors */
-:root{
-  --bg: #eef2f5;
-  --card: #ffffff;
-  --muted: #6b7280;
-  --primary: #2563eb;
-  --danger: #e53935;
-  --green-sidebar: #123b23;
+/* =================================== */
+/* === 1. BASE STYLES (Romeo) ======== */
+/* =================================== */
+
+:root {
+  --primary-blue: #2563EB;
+  --dark-green: #1E4620;
+  --muted-gray: #eef2f5;
+  --card-bg: #ffffff;
+  --danger-red: #ef4444;
+  --accent: #2563EB;
+  --shadow: 0 6px 18px rgba(14, 30, 37, .08);
+  --radius: 12px;
+  --font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
 * { box-sizing: border-box; }
-body {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  margin: 0;
-  background: var(--bg);
-  color: #111827;
-}
+html,body { height: 100%; margin: 0; font-family: var(--font-family); background:#f3f6f7; color:#0f1724; }
 
-/* Page layout */
-.page {
-  display: flex;
-  min-height: 100vh;
-}
+/* page layout */
+.page { display: flex; min-height: 100vh; }
+
+/* =================================== */
+/* === 2. ADMIN PAGE (Romeo) ========= */
+/* =================================== */
 
 /* Sidebar */
 .sidebar {
   width: 240px;
-  background: var(--green-sidebar);
-  color: white;
-  padding: 28px;
+  background: var(--dark-green);
+  color: #fff;
+  padding: 28px 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: flex-start;
+  gap: 18px;
 }
-.brand h1 { margin: 0; font-size: 28px; line-height: 1; }
-.brand span { font-weight: 700; }
-.nav .btn-terminal {
-  background: rgba(255,255,255,0.07);
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
+.brand h1 {
+  margin:0;
+  font-size:22px;
+  line-height:1.05;
+  font-weight:800;
+  letter-spacing: -0.02em;
 }
+.brand span { font-weight:700; color:#cbe6c1; }
 
 /* Main content */
-.main {
-  flex: 1;
-  padding: 28px;
+.main { flex: 1; padding: 28px 40px; }
+.header h2 {
+  margin: 0 0 16px 0;
+  font-size:34px;
+  text-align:center;
+  font-weight:800;
+  color:#1f2937;
 }
-.header h2 { font-size: 32px; margin: 0 0 16px 0; }
 
-/* Content layout */
+/* content area with two columns */
 .content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 360px;
   gap: 24px;
+  align-items: start;
 }
 
-/* Cards */
+/* card base */
 .card {
-  background: var(--card);
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 18px;
-  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+  box-shadow: var(--shadow);
 }
 
-/* Admin page specifics */
-.product-list-card { width: 60%; }
-.add-product-card { width: 36%; }
+/* product list card */
+.product-list-card h3 { margin: 0 0 12px 0; font-size:20px; }
+.search-row { margin-bottom: 16px; }
+.search-row input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e6eef2;
+  background: #fbfdff;
+}
 
-/* Product list item */
+/* product list */
+.admin-product-list {
+  display:flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 68vh;
+  overflow:auto;
+  padding-right: 6px;
+}
 .admin-product {
-  display: flex;
-  gap: 12px;
+  display:flex;
+  gap: 14px;
   align-items: center;
+  background: #f5f7fb;
   padding: 12px;
-  border-radius: 8px;
-  background: #f4f6f8;
-  margin-bottom: 10px;
+  border-radius: 10px;
 }
 .admin-product .thumb {
-  width: 72px; height: 72px; object-fit: cover; border-radius: 8px;
-  background: #ddd;
+  width:72px;
+  height:72px;
+  object-fit:cover;
+  border-radius:8px;
+  background:#ddd;
 }
-.admin-product .info { flex: 1; }
-.admin-product .title { font-weight: 700; margin-bottom: 6px; }
-.admin-product .meta { color: var(--muted); font-size: 13px; }
-.admin-product .desc { color: var(--muted); font-size: 13px; margin-top: 6px; }
-.admin-product .actions { display:flex; flex-direction:column; gap:8px; }
+.admin-product .info { flex:1; }
+.admin-product .title { font-weight:700; margin-bottom:6px; color:#0f1724; }
+.admin-product .meta { font-size:13px; color:#374151; margin-bottom:4px; }
+.admin-product .desc { font-size:13px; color:#6b7280; }
 
-/* Buttons */
-.primary-btn {
-  background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer;
+/* actions */
+.actions { display:flex; flex-direction:column; gap:8px; }
+.actions .edit-btn, .actions .delete-btn {
+  border:0; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:600;
 }
-.small-btn { padding: 6px 10px; border-radius: 8px; cursor: pointer; background:#e5e7eb; border: none; }
-.danger-btn { background: var(--danger); color: white; border: none; padding: 10px 12px; border-radius: 8px; cursor: pointer; }
+.actions .edit-btn { background:#2563EB; color:#fff; }
+.actions .delete-btn { background:#ef4444; color:#fff; }
 
-/* Input and preview */
-input[type="text"], input[type="number"], textarea {
-  width: 100%; padding: 10px; margin: 6px 0; border-radius: 8px; border: 1px solid #d1d5db;
+/* empty state */
+.empty { color:#6b7280; padding:20px; text-align:center; }
+
+/* Add product card (right) */
+.add-product-card h3 { margin: 0 0 12px 0; font-size:20px; }
+.add-form { display:flex; flex-direction:column; gap:10px; }
+.add-form input[type="text"], .add-form input[type="number"], .add-form textarea {
+  padding:12px; border-radius:10px; border:1px dashed #e2e8f0; background:#fbfdff;
 }
+.upload-btn {
+  display:inline-block;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #e6eef2;
+  text-align:center;
+  cursor:pointer;
+}
+.upload-btn input { display:none; }
+
+/* image preview */
 .image-preview {
-  width: 100%; height: 120px; border-radius: 8px; border: 2px dashed #e5e7eb; display:flex; align-items:center; justify-content:center; color:#9ca3af; margin:10px 0; background-size:cover; background-position:center;
+  min-height:88px;
+  border:2px dashed #e6eef2;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#94a3b8;
+  background-size:cover;
+  background-position:center;
 }
-.upload-btn { display: inline-block; margin-top:8px; cursor: pointer; }
-.upload-btn input { display: none; }
 
-/* Modals */
+/* primary button */
+.primary-btn {
+  margin-top:8px;
+  background: var(--primary-blue);
+  color:#fff;
+  border:none;
+  padding:12px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+/* =================================== */
+/* === 3. SALES PAGE (Moya) ========== */
+/* =================================== */
+/* (left blank for now; Romeo leaves this zone for Moya) */
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background-color: #f2f4f6;
+}
+ 
+/* Sidebar */
+.sidebar {
+width: 200px;
+height: 100vh;
+background-color: #164018;
+color: white;
+float: left;
+padding: 20px;
+box-sizing: border-box;
+}
+ 
+.sidebar h2 {
+margin-top: 0;
+margin-bottom: 30px;
+}
+ 
+.sidebar button {
+width: 100%;
+padding: 8px;
+background-color: #1c5e1c;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+ 
+.sidebar button:hover {
+background-color: #287a28;
+}
+ 
+/* Main Area */
+.main {
+margin-left: 220px;
+padding: 20px;
+}
+ 
+.main h1 {
+text-align: center;
+color: #222;
+margin-bottom: 20px;
+}
+ 
+/* Cards */
+.card {
+background-color: white;
+border-radius: 8px;
+padding: 15px;
+margin-bottom: 20px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+ 
+/* Left Side - All Products */
+#products {
+width: 45%;
+float: left;
+}
+ 
+#products input {
+width: 95%;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 5px;
+margin-bottom: 15px;
+}
+ 
+.product {
+background-color: #f9f9f9;
+border: 1px solid #ddd;
+border-radius: 5px;
+margin-bottom: 10px;
+padding: 8px;
+overflow: hidden;
+}
+ 
+.product img {
+float: left;
+margin-right: 10px;
+border-radius: 5px;
+}
+ 
+.product p {
+margin: 0;
+font-size: 14px;
+color: #333;
+}
+ 
+/* Added: Right Side (Current Sale + Total) */
+.right-side {
+width: 45%;
+float: right;
+}
+ 
+/* Current Sale Section */
+#current-sale {
+position: relative;
+}
+ 
+/* Added: Sale Header for title + button */
+.sale-header {
+overflow: hidden; /* keeps the floats aligned */
+margin-bottom: 10px;
+}
+ 
+.sale-header h2 {
+float: left;
+margin: 0;
+}
+ 
+.sale-header .clear {
+float: right;
+background-color: #dc3545;
+color: white;
+border: none;
+border-radius: 5px;
+padding: 5px 10px;
+cursor: pointer;
+}
+ 
+.sale-header .clear:hover {
+background-color: #b52b27;
+}
+ 
+.sale-item {
+background-color: #f9f9f9;
+border: 1px solid #ddd;
+border-radius: 5px;
+padding: 8px;
+margin-top: 10px;
+overflow: hidden;
+}
+ 
+.sale-item img {
+float: left;
+margin-right: 10px;
+border-radius: 5px;
+}
+ 
+.sale-item p {
+margin: 0;
+font-size: 14px;
+}
+ 
+.sale-item button {
+background-color: #007bff;
+color: white;
+border: none;
+border-radius: 4px;
+width: 25px;
+height: 25px;
+cursor: pointer;
+}
+ 
+.sale-item button:hover {
+background-color: #0056b3;
+}
+ 
+/* Grand Total (aligned under Current Sale) */
+#total {
+text-align: center;
+}
+ 
+#total h2 {
+font-size: 18px;
+margin-bottom: 10px;
+}
+ 
+#total button {
+background-color: #007bff;
+color: white;
+border: none;
+padding: 10px 25px;
+border-radius: 5px;
+cursor: pointer;
+}
+ 
+#total button:hover {
+background-color: #0056b3;
+}
+
+/* =================================== */
+/* === 4. MODALS (Misagal) =========== */
+/* =================================== */
+
 .modal-backdrop {
-  position: fixed; inset: 0; display:flex; align-items:center; justify-content:center;
-  background: rgba(0,0,0,0.35); z-index: 9999;
+  position: fixed;
+  inset: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(2,6,23,0.5);
+  z-index: 999;
 }
 .modal-content {
-  width: 420px; background: var(--card); padding:18px; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+  width: 480px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 10px 36px rgba(2,6,23,0.3);
 }
-.modal-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:14px; }
+.modal-content h3 { margin-top: 0; }
+.modal-content input, .modal-content textarea { width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #e6eef2; }
+.modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:8px; }
 
-/* Hide with .hidden */
-.hidden { display: none !important; }
+.hidden { display:none; }
 
-/* POS layout */
-.pos-grid { display: grid; grid-template-columns: 1fr 420px 360px; gap: 20px; }
-.pos-product-list .product-scroll { max-height: 520px; overflow-y: auto; margin-top:10px; }
-.current-sale-card .cart-scroll { max-height: 420px; overflow-y: auto; margin-top:10px; }
+/* responsive */
+@media (max-width: 980px) {
+  .content { grid-template-columns: 1fr; }
+  .sidebar { display:none; }
+  .main { padding: 18px; }
+}
 
-/* POS product card */
-.pos-product { display:flex; align-items:center; gap:12px; padding:12px; background:#f4f6f8; border-radius:8px; margin-bottom:10px; }
-.pos-thumb img { width:100px; height:80px; object-fit:cover; border-radius:6px; background:#ddd; }
-.pos-info { flex: 1; }
-.pos-actions button { padding:8px 10px; border-radius:8px; border:none; background: #2563eb; color:white; cursor:pointer; }
 
-/* Cart item */
-.cart-item { display:flex; justify-content:space-between; align-items:center; padding:10px; background:#f8fafc; border-radius:8px; margin-bottom:10px; }
-.cart-right button { padding:6px 10px; border-radius:6px; border:none; cursor:pointer; background:#e5e7eb; }
 
-/* Grand total card */
-.total-card .amount { font-size: 28px; font-weight:700; margin-top:8px; }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9fafb;
+    padding: 20px;
+}
 
-/* Responsive */
-@media (max-width: 1000px) {
-  .pos-grid { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
+h1, h2 {
+    color: #2c3e50;
+}
+
+.nav-link {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* INPUTS AND BUTTONS */
+input, button {
+    display: block;
+    margin: 8px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* PRODUCT CARDS */
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: white;
+}
+
+.product-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* FORM SECTION */
+.form-section {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
 }
