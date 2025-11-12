@@ -2,42 +2,23 @@
 /* === 1. BASE STYLES (Romeo) ======== */
 /* =================================== */
 
-/* FIX: Import the fonts used in the screenshots */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&display=swap');
-
 :root {
   --primary-blue: #2563EB;
   --dark-green: #1E4620;
-  /* FIX: Added more specific grays from the screenshot */
-  --bg-light: #f8faff;       /* Lightest page background */
-  --bg-gray: #f5f7fb;       /* Background for sub-cards */
-  --border-gray: #e6eef2;    /* Border for inputs */
-  --text-dark: #1f2937;
-  --text-light: #6b7280;
+  --muted-gray: #eef2f5;
   --card-bg: #ffffff;
   --danger-red: #ef4444;
+  --accent: #2563EB;
   --shadow: 0 6px 18px rgba(14, 30, 37, .08);
   --radius: 12px;
-  /* FIX: Updated font-family to match the new imports */
-  --font-family-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  --font-family-heading: 'Poppins', system-ui;
+  --font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
 * { box-sizing: border-box; }
-html,body { 
-  height: 100%; 
-  margin: 0; 
-  font-family: var(--font-family-body); 
-  /* FIX: Updated background to match screenshot */
-  background: var(--bg-light); 
-  color: var(--text-dark); 
-}
+html,body { height: 100%; margin: 0; font-family: var(--font-family); background:#f3f6f7; color:#0f1724; }
 
 /* page layout */
-.page { 
-  display: flex; 
-  min-height: 100vh; 
-}
+.page { display: flex; min-height: 100vh; }
 
 /* =================================== */
 /* === 2. ADMIN PAGE (Romeo) ========= */
@@ -45,627 +26,512 @@ html,body {
 
 /* Sidebar */
 .sidebar {
-  width: 280px; /* FIX: Wider sidebar to match screenshot */
+  width: 240px;
   background: var(--dark-green);
   color: #fff;
-  padding: 28px 24px; /* FIX: Adjusted padding */
+  padding: 28px 20px;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0; /* FIX: Prevent sidebar from shrinking */
+  align-items: flex-start;
+  gap: 18px;
 }
-
-/* FIX: Changed .brand h1 to .sidebar .brand-title */
-.sidebar .brand-title {
-  font-family: var(--font-family-heading);
+.brand h1 {
   margin:0;
-  font-size: 28px; /* FIX: Larger font */
-  line-height: 1.2;
-  font-weight: 800;
+  font-size:22px;
+  line-height:1.05;
+  font-weight:800;
   letter-spacing: -0.02em;
-  margin-bottom: 32px; /* FIX: Added space below title */
 }
-
-/* FIX: Added shared style for sidebar navigation buttons */
-.nav-button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 10px;
-  font-weight: 600;
-  width: 100%;
-  transition: background 0.2s ease;
-}
-.nav-button:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-.nav-button span {
-  font-size: 16px;
-}
+.brand span { font-weight:700; color:#cbe6c1; }
 
 /* Main content */
-.main { 
-  flex: 1; 
-  padding: 32px 40px; 
-  /* FIX: Add overflow for main content area if needed */
-  overflow-y: auto; 
-  height: 100vh;
-}
+.main { flex: 1; padding: 28px 40px; }
 .header h2 {
-  margin: 0 0 24px 0; /* FIX: More space below title */
-  font-size: 30px; /* FIX: Slightly smaller, as in screenshot */
-  font-family: var(--font-family-heading);
-  text-align: left; /* FIX: Title is left-aligned in screenshot */
-  font-weight: 800;
-  color: var(--text-dark);
+  margin: 0 0 16px 0;
+  font-size:34px;
+  text-align:center;
+  font-weight:800;
+  color:#1f2937;
 }
 
 /* content area with two columns */
 .content {
   display: grid;
-  /* FIX: Grid columns to match screenshot (left=wider, right=form) */
-  grid-template-columns: 1fr 420px; 
-  gap: 32px; /* FIX: Wider gap */
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
   align-items: start;
 }
 
 /* card base */
 .card {
   background: var(--card-bg);
-  border-radius: var(--radius);
-  padding: 24px; /* FIX: Increased padding */
+  border-radius: 12px;
+  padding: 18px;
   box-shadow: var(--shadow);
 }
 
 /* product list card */
-.product-list-card h3 { 
-  margin: 0 0 16px 0; /* FIX: More margin */
-  font-size: 22px; /* FIX: Larger font */
-  font-family: var(--font-family-heading);
-}
-
-.search-row { margin-bottom: 20px; }
+.product-list-card h3 { margin: 0 0 12px 0; font-size:20px; }
+.search-row { margin-bottom: 16px; }
 .search-row input {
   width: 100%;
-  padding: 14px 16px; /* FIX: Taller input */
+  padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid var(--border-gray);
-  background: #fff;
-  font-size: 16px;
-}
-.search-row input::placeholder {
-  color: var(--text-light);
+  border: 1px solid #e6eef2;
+  background: #fbfdff;
 }
 
 /* product list */
 .admin-product-list {
   display:flex;
   flex-direction: column;
-  gap: 16px; /* FIX: More space */
-  /* FIX: Removed fixed height, let card grow. */
-  /* max-height: 68vh; */
-  overflow: visible;
-  padding-right: 0;
+  gap: 14px;
+  max-height: 68vh;
+  overflow:auto;
+  padding-right: 6px;
 }
 .admin-product {
   display:flex;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
-  background: var(--bg-gray);
-  padding: 16px;
+  background: #f5f7fb;
+  padding: 12px;
   border-radius: 10px;
 }
 .admin-product .thumb {
-  width: 90px;  /* FIX: Larger image */
-  height: 90px;
-  object-fit: cover;
-  border-radius: 8px;
-  background: #ddd;
+  width:72px;
+  height:72px;
+  object-fit:cover;
+  border-radius:8px;
+  background:#ddd;
 }
 .admin-product .info { flex:1; }
-.admin-product .title { 
-  font-weight: 700; 
-  margin-bottom: 6px; 
-  color: var(--text-dark);
-  font-size: 18px; /* FIX: Larger font */
-}
-.admin-product .meta { 
-  font-size: 14px; /* FIX: Larger font */
-  color: var(--text-light); 
-  margin-bottom: 4px; 
-}
-.admin-product .desc { 
-  font-size: 14px; /* FIX: Larger font */
-  color: var(--text-light); 
-  /* FIX: Truncate long descriptions */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+.admin-product .title { font-weight:700; margin-bottom:6px; color:#0f1724; }
+.admin-product .meta { font-size:13px; color:#374151; margin-bottom:4px; }
+.admin-product .desc { font-size:13px; color:#6b7280; }
 
 /* actions */
-.actions { display:flex; flex-direction:column; gap: 8px; }
+.actions { display:flex; flex-direction:column; gap:8px; }
 .actions .edit-btn, .actions .delete-btn {
-  border:0; 
-  padding: 10px 14px; /* FIX: Larger buttons */
-  border-radius: 8px; 
-  cursor:pointer; 
-  font-weight: 600;
-  font-size: 14px;
+  border:0; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:600;
 }
-.actions .edit-btn { background: var(--primary-blue); color:#fff; }
-.actions .delete-btn { background: var(--danger-red); color:#fff; }
+.actions .edit-btn { background:#2563EB; color:#fff; }
+.actions .delete-btn { background:#ef4444; color:#fff; }
 
 /* empty state */
-.empty { color: var(--text-light); padding: 20px; text-align:center; font-size: 16px; }
+.empty { color:#6b7280; padding:20px; text-align:center; }
 
 /* Add product card (right) */
-.add-product-card h3 { 
-  margin: 0 0 16px 0; 
-  font-size: 22px; 
-  font-family: var(--font-family-heading);
+.add-product-card h3 { margin: 0 0 12px 0; font-size:20px; }
+.add-form { display:flex; flex-direction:column; gap:10px; }
+.add-form input[type="text"], .add-form input[type="number"], .add-form textarea {
+  padding:12px; border-radius:10px; border:1px dashed #e2e8f0; background:#fbfdff;
 }
-.add-form { 
-  display:flex; 
-  flex-direction:column; 
-  gap: 16px; /* FIX: Increased gap */
+.upload-btn {
+  display:inline-block;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #e6eef2;
+  text-align:center;
+  cursor:pointer;
 }
-
-/* FIX: Shared styles for all form inputs */
-.add-form .form-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: -8px; /* Pull label closer to its input */
-}
-
-.add-form input[type="text"], 
-.add-form input[type="number"], 
-.add-form textarea {
-  width: 100%;
-  padding: 14px 16px; /* FIX: Taller inputs */
-  border-radius: 10px;
-  /* FIX: Solid border, not dashed */
-  border: 1px solid var(--border-gray); 
-  background: #fff;
-  font-size: 16px;
-  font-family: var(--font-family-body);
-}
+.upload-btn input { display:none; }
 
 /* image preview */
 .image-preview {
-  min-height: 150px; /* FIX: Taller preview */
-  border: 2px dashed var(--border-gray);
-  border-radius: 10px;
+  min-height:88px;
+  border:2px dashed #e6eef2;
+  border-radius:10px;
   display:flex;
   align-items:center;
   justify-content:center;
-  color: var(--text-light);
-  background-size: cover;
-  background-position: center;
-  font-size: 14px;
-  text-align: center;
-  padding: 16px;
+  color:#94a3b8;
+  background-size:cover;
+  background-position:center;
 }
-
-/* FIX: Renamed/Restyled upload button to match screenshot */
-.upload-button {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--border-gray);
-  background: var(--card-bg);
-  color: var(--text-dark);
-  font-size: 16px;
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.upload-button:hover {
-  background: var(--bg-gray);
-}
-.upload-button input { display:none; }
 
 /* primary button */
 .primary-btn {
-  margin-top: 8px;
+  margin-top:8px;
   background: var(--primary-blue);
-  color: #fff;
-  border: none;
-  padding: 16px; /* FIX: Taller button */
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 16px; /* FIX: Larger text */
-  width: 100%; /* FIX: Full width */
-}
-.primary-btn:hover {
-  background: #1d4ed8;
+  color:#fff;
+  border:none;
+  padding:12px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
 }
 
 /* =================================== */
 /* === 3. SALES PAGE (Moya) ========== */
 /* =================================== */
+/* (left blank for now; Romeo leaves this zone for Moya) */
 
-/* === OVERALL PAGE WRAPPER === */
-.sales-page {
-  display: flex;
-  min-height: 100vh;
-  background: var(--bg-light); /* FIX: Match admin bg */
-  overflow: hidden; 
-}
+body {
 
-/* === SIDEBAR (reuse admin styles) === */
-.sales-sidebar {
-  width: 280px; /* FIX: Match admin sidebar */
-  background: var(--dark-green);
-  color: #fff;
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-}
-/* FIX: Changed h1 to brand-title */
-.sales-sidebar .brand-title {
-  font-family: var(--font-family-heading);
-  margin:0;
-  font-size: 28px;
-  line-height: 1.2;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 32px;
-}
-/* FIX: Removed span rule, handled by brand-title */
+margin: 0;
 
-/* === MAIN AREA === */
-.sales-main {
-  flex: 1;
-  padding: 32px 40px;
-  overflow-y: auto;
-  height: 100vh;
+font-family: Arial, sans-serif;
+
+background-color: #f2f4f6;
+
 }
 
-/* === PAGE TITLE === */
-.sales-header h2 {
-  margin: 0 0 24px 0;
-  font-size: 30px;
-  font-family: var(--font-family-heading);
-  text-align: left; /* FIX: Match admin title */
-  font-weight: 800;
-  color: var(--text-dark);
+ 
+
+/* Sidebar */
+
+.sidebar {
+
+width: 200px;
+
+height: 100vh;
+
+background-color: #164018;
+
+color: white;
+
+float: left;
+
+padding: 20px;
+
+box-sizing: border-box;
+
 }
 
-/* === MAIN CONTENT GRID === */
-/* FIX: This grid setup is more complex */
-/* It's a 2-col grid, but the right col is also a flex container */
-.sales-content {
-  display: grid;
-  grid-template-columns: 1fr 420px; /* FIX: Match admin grid */
-  gap: 32px;
-  align-items: start;
-  /* FIX: Ensure grid stretches to fill height */
-  height: calc(100vh - 88px - 32px); /* 100vh - header - padding */
+ 
+
+.sidebar h2 {
+
+margin-top: 0;
+
+margin-bottom: 30px;
+
 }
 
-/* === SHARED CARD BASE === */
-.sales-card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: var(--shadow);
-  /* FIX: Make cards stretch to fill their grid/flex container */
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+ 
+
+.sidebar button {
+
+width: 100%;
+
+padding: 8px;
+
+background-color: #1c5e1c;
+
+color: white;
+
+border: none;
+
+border-radius: 5px;
+
+cursor: pointer;
+
 }
 
-/* =================================== */
-/* === LEFT SIDE: ALL PRODUCTS ======= */
-/* =================================== */
-.all-products h3 {
-  margin: 0 0 16px 0;
-  font-size: 22px;
-  font-family: var(--font-family-heading);
+ 
+
+.sidebar button:hover {
+
+background-color: #287a28;
+
 }
 
-.all-products .search-row {
-  margin-bottom: 20px;
-}
-.all-products input {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--border-gray);
-  background: #fff;
-  font-size: 16px;
-}
-.all-products input::placeholder {
-  color: var(--text-light);
+ 
+
+/* Main Area */
+
+.main {
+
+margin-left: 220px;
+
+padding: 20px;
+
 }
 
-/* product listing area (scrolls inside only) */
-.sales-product-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  /* FIX: Make list scrollable within the card */
-  flex: 1; /* This is the key */
-  overflow-y: auto;
-  padding-right: 6px;
-  margin-right: -6px;
+ 
+
+.main h1 {
+
+text-align: center;
+
+color: #222;
+
+margin-bottom: 20px;
+
 }
 
-/* each product card */
-.sales-product {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  background: var(--bg-gray);
-  padding: 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-  /* FIX: Add a border */
-  border: 1px solid var(--bg-gray);
-}
-.sales-product:hover {
-  background: var(--card-bg);
-  border-color: var(--primary-blue);
-  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1);
+ 
+
+/* Cards */
+
+.card {
+
+background-color: white;
+
+border-radius: 8px;
+
+padding: 15px;
+
+margin-bottom: 20px;
+
+box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
 }
 
-.sales-product .thumb {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 8px;
-  background: #ddd;
+ 
+
+/* Left Side - All Products */
+
+#products {
+
+width: 45%;
+
+float: left;
+
 }
 
-.sales-product .info {
-  flex: 1;
-}
-.sales-product .title {
-  font-weight: 700;
-  margin-bottom: 6px;
-  color: var(--text-dark);
-  font-size: 18px;
-}
-.sales-product .meta {
-  font-size: 14px;
-  color: var(--text-light);
-  margin-bottom: 4px;
-}
-/* FIX: Removed description, not in screenshot */
+ 
 
-/* =================================== */
-/* === RIGHT SIDE (Column 2) ========= */
-/* =================================== */
+#products input {
 
-/* FIX: This wrapper holds the two right-side cards */
-.sales-right-column {
-  display: flex;
-  flex-direction: column;
-  gap: 32px; /* Gap between "Current Sale" and "Grand Total" */
-  height: 100%; /* Make it fill the grid cell */
+width: 95%;
+
+padding: 8px;
+
+border: 1px solid #ccc;
+
+border-radius: 5px;
+
+margin-bottom: 15px;
+
 }
 
-/* =================================== */
-/* === RIGHT-TOP: CURRENT SALE ====== */
-/* =================================== */
+ 
 
-/* FIX: Card takes available space, but doesn't force height */
-.current-sale {
-  flex: 1; /* This is the key: it grows */
-  height: auto;
-  max-height: 60%; /* Example: limit height */
+.product {
+
+background-color: #f9f9f9;
+
+border: 1px solid #ddd;
+
+border-radius: 5px;
+
+margin-bottom: 10px;
+
+padding: 8px;
+
+overflow: hidden;
+
 }
 
-/* FIX: Header for current sale card */
-.current-sale-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+ 
+
+.product img {
+
+float: left;
+
+margin-right: 10px;
+
+border-radius: 5px;
+
 }
 
-.current-sale-header h3 {
-  margin: 0;
-  font-size: 22px;
-  font-family: var(--font-family-heading);
+ 
+
+.product p {
+
+margin: 0;
+
+font-size: 14px;
+
+color: #333;
+
 }
 
-/* FIX: Style for the Clear Cart button */
-.clear-cart-btn {
-  background: none;
-  border: 1px solid var(--border-gray);
-  color: var(--text-dark);
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.clear-cart-btn:hover {
-  background: var(--bg-gray);
+ 
+
+/* Added: Right Side (Current Sale + Total) */
+
+.right-side {
+
+width: 45%;
+
+float: right;
+
 }
 
+ 
 
-/* sale items list */
-.sale-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  /* FIX: Let the card's flexbox handle scrolling */
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 6px;
+/* Current Sale Section */
+
+#current-sale {
+
+position: relative;
+
 }
 
-/* each sale item */
+ 
+
+/* Added: Sale Header for title + button */
+
+.sale-header {
+
+overflow: hidden; /* keeps the floats aligned */
+
+margin-bottom: 10px;
+
+}
+
+ 
+
+.sale-header h2 {
+
+float: left;
+
+margin: 0;
+
+}
+
+ 
+
+.sale-header .clear {
+
+float: right;
+
+background-color: #dc3545;
+
+color: white;
+
+border: none;
+
+border-radius: 5px;
+
+padding: 5px 10px;
+
+cursor: pointer;
+
+}
+
+ 
+
+.sale-header .clear:hover {
+
+background-color: #b52b27;
+
+}
+
+ 
+
 .sale-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--bg-gray);
-  border-radius: 10px;
-  padding: 12px;
+
+background-color: #f9f9f9;
+
+border: 1px solid #ddd;
+
+border-radius: 5px;
+
+padding: 8px;
+
+margin-top: 10px;
+
+overflow: hidden;
+
 }
+
+ 
+
 .sale-item img {
-  width: 60px; /* FIX: Larger image */
-  height: 60px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-.sale-item .details {
-  flex: 1;
-}
-.sale-item .name {
-  font-weight: 700;
-  font-size: 16px; /* FIX: Larger font */
-  margin-bottom: 4px;
-}
-.sale-item .price { /* FIX: Added price */
-  font-size: 14px;
-  color: var(--text-light);
+
+float: left;
+
+margin-right: 10px;
+
+border-radius: 5px;
+
 }
 
-/* FIX: New style for the quantity control */
-.quantity-control {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-gray);
-  border-radius: 8px;
-  padding: 4px;
-}
-.quantity-control .qty-btn {
-  background: none;
-  border: none;
-  color: var(--primary-blue);
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  font-weight: 800;
-  font-size: 18px;
-  line-height: 1;
-}
-.quantity-control .qty-display {
-  font-size: 14px;
-  font-weight: 700;
-  width: 20px; /* Fixed width for alignment */
-  text-align: center;
+ 
+
+.sale-item p {
+
+margin: 0;
+
+font-size: 14px;
+
 }
 
+ 
 
-/* =================================== */
-/* === RIGHT-BOTTOM: GRAND TOTAL ===== */
-/* =================================== */
-.grand-total {
-  /* FIX: Card is not flexible, it has a fixed size */
-  flex: 0 0 auto; 
-  text-align: center; /* FIX: Center align all content */
-}
-/* FIX: Style for the big total display */
-.grand-total .total-display {
-  margin-bottom: 16px;
-}
-.grand-total .total-display span {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-light);
-  display: block;
-}
-.grand-total .total-display .amount {
-  font-family: var(--font-family-heading);
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--text-dark);
-  line-height: 1.1;
-  margin-top: 4px;
+.sale-item button {
+
+background-color: #007bff;
+
+color: white;
+
+border: none;
+
+border-radius: 4px;
+
+width: 25px;
+
+height: 25px;
+
+cursor: pointer;
+
 }
 
-/* FIX: Renamed checkout-btn to finalize-btn */
-.finalize-btn {
-  background: var(--primary-blue);
-  color: #fff;
-  border: none;
-  padding: 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 16px;
-  width: 100%; /* FIX: Full width button */
-}
-.finalize-btn:hover {
-  background: #1d4ed8;
+ 
+
+.sale-item button:hover {
+
+background-color: #0056b3;
+
 }
 
-/* Empty state text */
-.empty-sale {
-  color: var(--text-light);
-  text-align: center;
-  padding: 20px;
-  font-size: 16px;
+ 
+
+/* Grand Total (aligned under Current Sale) */
+
+#total {
+
+text-align: center;
+
 }
 
-/* =================================== */
-/* === RESPONSIVE LAYOUT (Kept) ====== */
-/* =================================== */
-@media (max-width: 980px) {
-  .content, .sales-content {
-    grid-template-columns: 1fr;
-  }
-  .sidebar, .sales-sidebar {
-    display: none;
-  }
-  .main, .sales-main {
-    padding: 18px;
-    height: auto;
-  }
-  .sales-right-column {
-    gap: 16px;
-  }
-  .sales-content {
-    height: auto;
-  }
+ 
+
+#total h2 {
+
+font-size: 18px;
+
+margin-bottom: 10px;
+
 }
 
-/* =================================== */
-/* === 4. MODALS (Misagal) =========== */
-/* =================================== */
-/* (This is where your modal styles will go) */
+ 
 
-.modal-backdrop {
-  display: none; /* Hidden by default */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 100;
-  align-items: center;
-  justify-content: center;
+#total button {
+
+background-color: #007bff;
+
+color: white;
+
+border: none;
+
+padding: 10px 25px;
+
+border-radius: 5px;
+
+cursor: pointer;
+
 }
 
-.modal-content {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 500px;
+ 
+
+#total button:hover {
+
+background-color: #0056b3;
+
 }
 
-.modal-content h3 {
-  font-family: var(--font-family-heading);
-  font-size: 24px;
-  margin: 0 0 16px 0;
-}
-/* (etc...) */
