@@ -165,290 +165,216 @@ html,body { height: 100%; margin: 0; font-family: var(--font-family); background
 /* =================================== */
 /* === 3. SALES PAGE (Moya) ========== */
 /* =================================== */
-/* (left blank for now; Romeo leaves this zone for Moya) */
 
-body {
-margin: 0;
-font-family: Arial, sans-serif;
-background-color: #f2f4f6;
-}
- 
-/* Sidebar */
-.sidebar {
-width: 200px;
-height: 100vh;
-background-color: #164018;
-color: white;
-float: left;
-padding: 20px;
-box-sizing: border-box;
-}
- 
-.sidebar h2 {
-margin-top: 0;
-margin-bottom: 30px;
-}
- 
-.sidebar button {
-width: 100%;
-padding: 8px;
-background-color: #1c5e1c;
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-}
- 
-.sidebar button:hover {
-background-color: #287a28;
-}
- 
-/* Main Area */
-.main {
-margin-left: 220px;
-padding: 20px;
-}
- 
-.main h1 {
-text-align: center;
-color: #222;
-margin-bottom: 20px;
-}
- 
-/* Cards */
-.card {
-background-color: white;
-border-radius: 8px;
-padding: 15px;
-margin-bottom: 20px;
-box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
- 
-/* Left Side - All Products */
-#products {
-width: 45%;
-float: left;
-}
- 
-#products input {
-width: 95%;
-padding: 8px;
-border: 1px solid #ccc;
-border-radius: 5px;
-margin-bottom: 15px;
-}
- 
-.product {
-background-color: #f9f9f9;
-border: 1px solid #ddd;
-border-radius: 5px;
-margin-bottom: 10px;
-padding: 8px;
-overflow: hidden;
-}
- 
-.product img {
-float: left;
-margin-right: 10px;
-border-radius: 5px;
-}
- 
-.product p {
-margin: 0;
-font-size: 14px;
-color: #333;
-}
- 
-/* Added: Right Side (Current Sale + Total) */
-.right-side {
-width: 45%;
-float: right;
-}
- 
-/* Current Sale Section */
-#current-sale {
-position: relative;
-}
- 
-/* Added: Sale Header for title + button */
-.sale-header {
-overflow: hidden; /* keeps the floats aligned */
-margin-bottom: 10px;
-}
- 
-.sale-header h2 {
-float: left;
-margin: 0;
-}
- 
-.sale-header .clear {
-float: right;
-background-color: #dc3545;
-color: white;
-border: none;
-border-radius: 5px;
-padding: 5px 10px;
-cursor: pointer;
-}
- 
-.sale-header .clear:hover {
-background-color: #b52b27;
-}
- 
-.sale-item {
-background-color: #f9f9f9;
-border: 1px solid #ddd;
-border-radius: 5px;
-padding: 8px;
-margin-top: 10px;
-overflow: hidden;
-}
- 
-.sale-item img {
-float: left;
-margin-right: 10px;
-border-radius: 5px;
-}
- 
-.sale-item p {
-margin: 0;
-font-size: 14px;
-}
- 
-.sale-item button {
-background-color: #007bff;
-color: white;
-border: none;
-border-radius: 4px;
-width: 25px;
-height: 25px;
-cursor: pointer;
-}
- 
-.sale-item button:hover {
-background-color: #0056b3;
-}
- 
-/* Grand Total (aligned under Current Sale) */
-#total {
-text-align: center;
-}
- 
-#total h2 {
-font-size: 18px;
-margin-bottom: 10px;
-}
- 
-#total button {
-background-color: #007bff;
-color: white;
-border: none;
-padding: 10px 25px;
-border-radius: 5px;
-cursor: pointer;
-}
- 
-#total button:hover {
-background-color: #0056b3;
+/* === Sales Page Layout Wrapper === */
+/* Similar page setup as Admin (fixed 1440x900) */
+.sales-page {
+  display: flex;
+  min-height: 100vh; /* full height viewport */
+  background: #f3f6f7;
+  overflow: hidden; /* prevents scrollbars appearing for small gaps */
 }
 
-/* =================================== */
-/* === 4. MODALS (Misagal) =========== */
-/* =================================== */
-
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: rgba(2,6,23,0.5);
-  z-index: 999;
+/* === Sidebar (same style as Admin’s) === */
+.sales-sidebar {
+  width: 240px;
+  background: var(--dark-green);
+  color: #fff;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
-.modal-content {
-  width: 480px;
-  background: #fff;
-  border-radius: 16px;
+
+/* === Main Content Area === */
+.sales-main {
+  flex: 1;
+  padding: 28px 40px;
+  overflow: hidden; /* locks layout height so it won’t scroll the full page */
+}
+
+.sales-main h2 {
+  margin: 0 0 16px 0;
+  font-size: 34px;
+  text-align: center;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+/* === Two-column layout (left: All Products, right: Current Sale) === */
+.sales-content {
+  display: grid;
+  grid-template-columns: 1fr 360px; /* same width division as Admin */
+  gap: 24px;
+  align-items: start;
+  height: calc(900px - 150px); /* fixes visible height zone based on 1440x900 */
+  overflow: hidden;
+}
+
+/* === Card base (same as Admin for visual consistency) === */
+.sales-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
   padding: 18px;
-  box-shadow: 0 10px 36px rgba(2,6,23,0.3);
+  box-shadow: var(--shadow);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
-.modal-content h3 { margin-top: 0; }
-.modal-content input, .modal-content textarea { width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #e6eef2; }
-.modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:8px; }
 
-.hidden { display:none; }
+/* === Left: All Products Section === */
+.sales-products h3 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+}
 
-/* responsive */
+/* search bar */
+.sales-products .search-row {
+  margin-bottom: 14px;
+}
+.sales-products input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e6eef2;
+  background: #fbfdff;
+}
+
+/* product list (same size as Admin’s) */
+.sales-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  max-height: 68vh; /* consistent scroll area */
+  padding-right: 6px;
+}
+
+/* each product card */
+.sales-product {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: #f5f7fb;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.sales-product:hover {
+  background: #e2e8f0; /* light hover feedback */
+}
+
+.sales-product .thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #ddd;
+}
+
+.sales-product .info {
+  flex: 1;
+}
+
+.sales-product .title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #0f1724;
+}
+
+.sales-product .meta {
+  font-size: 13px;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.sales-product .desc {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* === Right: Current Sale Section === */
+.current-sale h3 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+}
+
+.sale-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 50vh; /* prevents overflow beyond layout */
+}
+
+.sale-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f5f7fb;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.sale-item img {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.sale-item .details {
+  flex: 1;
+}
+
+.sale-item .name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.sale-item .qty {
+  font-size: 13px;
+  color: #555;
+}
+
+/* total area */
+.total-section {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.total-section h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.checkout-btn {
+  background: var(--primary-blue);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.checkout-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Empty message */
+.empty-sale {
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  padding: 20px 0;
+}
+
+/* responsive (optional) */
 @media (max-width: 980px) {
-  .content { grid-template-columns: 1fr; }
-  .sidebar { display:none; }
-  .main { padding: 18px; }
-}
-
-
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9fafb;
-    padding: 20px;
-}
-
-h1, h2 {
-    color: #2c3e50;
-}
-
-.nav-link {
-    display: inline-block;
-    margin-bottom: 10px;
-    color: #007bff;
-    text-decoration: none;
-}
-
-.nav-link:hover {
-    text-decoration: underline;
-}
-
-/* INPUTS AND BUTTONS */
-input, button {
-    display: block;
-    margin: 8px 0;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* PRODUCT CARDS */
-.product-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: white;
-}
-
-.product-card img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 6px;
-}
-
-/* FORM SECTION */
-.form-section {
-    margin-bottom: 20px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
+  .sales-content { grid-template-columns: 1fr; }
+  .sales-sidebar { display: none; }
+  .sales-main { padding: 18px; }
 }
