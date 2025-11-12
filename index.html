@@ -2,32 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sales Terminal</title>
   <link rel="stylesheet" href="style.css">
-  <script src="products.json"></script> 
-  <script src="storage.js" defer></script> 
 </head>
 <body>
-    
   <h1>Sales Terminal</h1>
- 
-  <div class="pos-product-list card">
-    <h2>All Products</h2>
-    <input type="text" id="searchBar" placeholder="Search product...">
-    <div id="productContainer"></div>   
-  </div>
- 
-  <div class="current-sale-card card">
-    <h2>Current Sale</h2>
-    <ul id="cartList"></ul>
-    <button id="clearBtn">Clear Cart</button>
-  </div>
- 
-  <div class="total-card card">
-    <h2>Grand Total</h2>
-    <p id="grandTotal">₱0</p>
-  </div>
+  <a href="admin.html" class="nav-link">Go to Admin Dashboard</a>
 
-  
+  <input type="text" id="searchBar" placeholder="Search product...">
+  <div id="productContainer"></div>
+
+  <h2>Cart</h2>
+  <ul id="cartList"></ul>
+  <p>Total: <span id="grandTotal">₱0.00</span></p>
+  <button id="clearBtn">Clear Cart</button>
+
+  <!-- Scripts -->
+  <script src="storage.js" defer></script>
+  <script src="pos.js" defer></script>
 </body>
 </html>
