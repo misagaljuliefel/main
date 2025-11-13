@@ -97,7 +97,6 @@ html, body {
 /* product list card */
 .product-list-card{
       height: 650px;
-      overflow-y: auto;
 }
 .add-product-card{
       height: 650px; 
